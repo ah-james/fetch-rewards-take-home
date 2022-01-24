@@ -3,22 +3,30 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <form>
+      <label>Full Name: </label>
+      <input name="fullName" type="text" />
+      <br />
+      <label>Email: </label>
+      <input name="email" type="email" />
+      <br />
+      <label>Password: </label>
+      <input name="password" type="password" />
+      <br />
+      <label>Occupation: </label>
+      <select>
+        {/* fill in options through GET request */}
+        <option value="Option 1">Option 1</option>
+      </select>
+      <br/>
+      <label>State:</label>
+      <select>
+        {/* fill in options through GET request */}
+        <option value="Option 1">Option 1</option>
+      </select>
+      <br/>
+      <input type="submit" />
+    </form>
   );
 }
 
