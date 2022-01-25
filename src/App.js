@@ -2,45 +2,59 @@ import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
-  const [occupations, setOccupations] = useState()
-  const [states, setStates] = useState() 
+  // useState hooks to save user input in form to send via POST request
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [occupation, setOccupation] = useState('')
+  const [homeState, setHomeState] = useState('')
+  // portions of state for dropdown lists
+  const [occupationsList, setOccupationsList] = useState()
+  const [statesList, setStatesList] = useState()
 
-  // GET request to populate select dropdowns in form
   useEffect(() => {
+    // GET request to populate select dropdowns in form
     fetch('https://frontend-take-home.fetchrewards.com/form')
-        .then(response => response.json())
-        .then(data => setOccupations(data.occupations));
+      .then(response => response.json())
+      .then(data => setOccupationsList(data.occupations));
 
-        fetch('https://frontend-take-home.fetchrewards.com/form')
-        .then(response => response.json())
-        .then(data => setStates(data.states));
+      fetch('https://frontend-take-home.fetchrewards.com/form')
+      .then(response => response.json())
+      .then(data => setStatesList(data.states));
 
   }, []);
 
+  // finish building handleSubmit after form is completely functional
+  // handleSubmit = (e) => {
+  //   e.preventDefault()
+
+
+  // }
+
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit} >
         <label>Full Name: </label>
-        <input name="fullName" type="text" />
+        <input type="text" required value={name} onChange={(e) => setName(e.target.value)} />
         <br />
         <label>Email: </label>
-        <input name="email" type="email" />
+        <input name="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
         <br />
         <label>Password: </label>
-        <input name="password" type="password" />
+        <input name="password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
         <br />
         <label>Occupation: </label>
-        <select>
+        <select required >
           {/* fill in options through GET request */}
           <option value="1">         </option>
-          {occupations?.map((occupation, id) => <option key={occupation} value={id+1}>{occupation}</option>)}
+          {occupationsList?.map((occupation, id) => <option key={occupation} value={id+1}>{occupation}</option>)}
         </select>
         <br/>
-        <label>State:</label>
-        <select>
+        <label>State: </label>
+        <select required >
           {/* fill in options through GET request */}
           <option value="1">         </option>
-          {states?.map((state, id) => <option key={state.abbreviation} value={id+1}>{state.name}</option>)}
+          {statesList?.map((state, id) => <option key={state.abbreviation} value={id+1}>{state.name}</option>)}
         </select>
         <br/>
         <input type="submit" />
