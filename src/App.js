@@ -25,11 +25,11 @@ function App() {
   }, []);
 
   // finish building handleSubmit after form is completely functional
-  // handleSubmit = (e) => {
-  //   e.preventDefault()
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(name, email, password, occupation, homeState)
 
-
-  // }
+  }
 
   return (
     <div>
@@ -44,17 +44,17 @@ function App() {
         <input name="password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
         <br />
         <label>Occupation: </label>
-        <select required >
+        <select onChange={(e) => setOccupation(e.target.value)} >
           {/* fill in options through GET request */}
           <option value="1">         </option>
-          {occupationsList?.map((occupation, id) => <option key={occupation} value={id+1}>{occupation}</option>)}
+          {occupationsList?.map((occupation, id) => <option key={occupation} value={id+1} >{occupation}</option>)}
         </select>
         <br/>
         <label>State: </label>
-        <select required >
+        <select onChange={(e) => setHomeState(e.target.value)} >
           {/* fill in options through GET request */}
           <option value="1">         </option>
-          {statesList?.map((state, id) => <option key={state.abbreviation} value={id+1}>{state.name}</option>)}
+          {statesList?.map((state, id) => <option key={state.abbreviation} value={id+1} >{state.name}</option>)}
         </select>
         <br/>
         <input type="submit" />
