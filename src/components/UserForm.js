@@ -11,15 +11,9 @@ const UserForm = props => {
     // finish building handleSubmit after form is completely functional
     const handleSubmit = (e) => {
         e.preventDefault()
-        const post = { name, email, password, occupation, homeState }
+        // const post = { name, email, password, occupation, homeState }
 
-        fetch('https://frontend-take-home.fetchrewards.com/form', {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(post)
-        })
-        .then(response => response.json())
-        .then(data => console.log(data))
+
     }
     
     return(

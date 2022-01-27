@@ -8,7 +8,7 @@ export const fetchData = () => {
             }
 
             let json = await response.json()
-            dispatch({type: "GET_DATA", payload: json['data']})
+            dispatch({type: "GET_DATA", payload: json})
 
         } catch (error) {
             throw error
