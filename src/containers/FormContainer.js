@@ -25,7 +25,6 @@ const FormContainer = props => {
 
     return (
         <div>
-            <h1 class="text-center">Fetch Rewards Form</h1>
             <UserForm occupationsList={occupationsList} statesList={statesList} />
         </div>
     );
