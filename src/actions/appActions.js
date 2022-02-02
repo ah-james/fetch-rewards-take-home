@@ -18,24 +18,22 @@ export const fetchData = () => {
     }
 }
 
-export const addData = (name, email, password, occupation, state) => {
-    return async dispatch => {
-        try {
-            let response = await fetch('https://frontend-take-home.fetchrewards.com/form', {
-                method: 'POST',
-                body: JSON.stringify({name, email, password, occupation, state}),
-                headers: {'Content-Type': 'application/json'},
-            })
+export const addData = async (name, email, password, occupation, state) => {
+    try {
+        let response = await fetch('https://frontend-take-home.fetchrewards.com/form', {
+            method: 'POST',
+            body: JSON.stringify({name, email, password, occupation, state}),
+            headers: {'Content-Type': 'application/json'},
+        })
 
-            if (response.ok) {
-                // give alert on page that the form was submitted successfully
-                toast.success('Your form submitted correctly!')
-            } else {
-                throw new Error('Something Went Wrong!')
-            }
-
-        } catch (error) {
-            throw error
+        if (response.ok) {
+            // give alert on page that the form was submitted successfully
+            toast.success('Your form submitted successfully!')
+        } else {
+            throw new Error('Something Went Wrong!')
         }
+
+    } catch (error) {
+        throw error
     }
 }

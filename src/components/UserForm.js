@@ -61,7 +61,7 @@ const UserForm = props => {
     
     return(
         <div>
-            <p class="text-warning">{errors}</p>
+            {errors ? <p class="text-center p-3 mb-2 bg-danger text-white">{errors}</p> : null}
             <form onSubmit={handleSubmit}>
                 <div class="row g-3 align-items-center">
                     <div class="col-auto">
@@ -112,7 +112,7 @@ const UserForm = props => {
                     </div>
                 </div>
                 <input type="submit" class="btn btn-primary"/>
-                <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
+                <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
             </form>
         </div>
     )
