@@ -18,7 +18,8 @@ export const fetchData = () => {
     }
 }
 
-export const addData = async (name, email, password, occupation, state) => {
+export const addData = (name, email, password, occupation, state) => {
+    return async dispatch => {
     try {
         let response = await fetch('https://frontend-take-home.fetchrewards.com/form', {
             method: 'POST',
@@ -29,6 +30,7 @@ export const addData = async (name, email, password, occupation, state) => {
         if (response.ok) {
             // give alert on page that the form was submitted successfully
             toast.success('Your form submitted successfully!')
+            dispatch({type: "ADD_DATA"})
         } else {
             throw new Error('Something Went Wrong!')
         }
@@ -36,4 +38,5 @@ export const addData = async (name, email, password, occupation, state) => {
     } catch (error) {
         throw error
     }
+}
 }
