@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 export const fetchData = () => {
     return async dispatch => {
         try {
@@ -16,21 +18,22 @@ export const fetchData = () => {
     }
 }
 
-export const addData = ( name, email, password, occupation, homeState ) => {
+export const addData = (name, email, password, occupation, state) => {
     return async dispatch => {
         try {
             let response = await fetch('https://frontend-take-home.fetchrewards.com/form', {
                 method: 'POST',
-                body: JSON.stringify({ name, email, password, occupation, homeState }),
-                headers: {'Content-Type': 'application/json'}
+                body: JSON.stringify({name, email, password, occupation, state}),
+                headers: {'Content-Type': 'application/json'},
             })
 
-            if (!response.ok) {
+            if (response.ok) {
+                // give alert on page that the form was submitted successfully
+                toast.success('Your form submitted correctly!')
+            } else {
                 throw new Error('Something Went Wrong!')
             }
 
-            let json = await response.json()
-            dispatch({type: "ADD_DATA", payload: json['data']})
         } catch (error) {
             throw error
         }
